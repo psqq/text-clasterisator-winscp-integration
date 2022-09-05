@@ -79,6 +79,10 @@ windowFormController.saveTextEditorButton['command'] = lambda: textEditorSetting
 windowFormController.settingsButton['command'] = settingsController.openSettingsInEditor
 
 windowFormController.window.bind(
+    "<<textsIsEmptyEvent>>",
+    lambda event: windowFormController.messageTextBox.insert(2.0, f'Ошибка! Не удалось разбить текст данным регулярным выражением.\n')
+)
+windowFormController.window.bind(
     "<<textPrepareFinishedEvent>>",
     lambda event: windowFormController.messageTextBox.insert(2.0, f'Подготовка текста завершена. Удаление редких слов...\n')
 )

@@ -19,6 +19,10 @@ class ClusteringObject:
         countRows = 0
         texts = DataRetriever.splitText(startRowRegExp, textFile, countRows)
 
+        if len(texts) <= 0:
+            pr.event_generate('<<textsIsEmptyEvent>>')
+            return
+
         textPreparer = TextPreparer()
         leaveRowsValue = int(windowFormController.countRows.get()) if windowFormController.countRows.get() else 0
         texts = textPreparer.sliceMessages(texts, leaveRowsValue)
